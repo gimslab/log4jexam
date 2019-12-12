@@ -1,0 +1,22 @@
+package com.gimslab.log4jexam.log4jexam.pkga;
+
+import com.gimslab.log4jexam.log4jexam.AbsService;
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
+
+@Component
+@Slf4j
+public class ServiceA extends AbsService {
+
+	@Override
+	protected Logger loger() {
+		return log;
+	}
+
+	@Scheduled(fixedDelay = 3000)
+	public void testlog(){
+		super.testLog();
+	}
+}
