@@ -18,7 +18,8 @@ public class LoggerLevelController {
 
 	@GetMapping("/loggers")
 	public List<String> getLoggers(Boolean all) {
-		return getAllLoggers(all == null ? false : all);
+		return getAllLoggers(
+				firstNonNull(all, false));
 	}
 
 	@PutMapping("/logger/{loggerName}/level/{level}")
@@ -29,7 +30,7 @@ public class LoggerLevelController {
 	}
 
 	@DeleteMapping("/logger/{loggerName}")
-	public List<String> deleteLogger(@PathVariable String loggerName){
+	public List<String> deleteLogger(@PathVariable String loggerName) {
 		getLoggerByName(loggerName)
 				.setLevel(null);
 		return getAllLoggers(false);
@@ -49,5 +50,9 @@ public class LoggerLevelController {
 
 	private String loggerToString(ch.qos.logback.classic.Logger logger) {
 		return logger.getName() + " " + logger.getLevel() + "   " + logger.getEffectiveLevel();
+	}
+
+	private <T> T firstNonNull(T first, T second) {
+		return first != null ? first : second;
 	}
 }
