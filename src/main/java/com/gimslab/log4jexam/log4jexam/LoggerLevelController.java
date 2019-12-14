@@ -8,29 +8,30 @@ import lombok.val;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
-import static java.util.stream.Collectors.toList;
+import static java.lang.System.lineSeparator;
+import static java.util.stream.Collectors.joining;
 
 @RestController
 @Slf4j
 public class LoggerLevelController {
 
 	@GetMapping("/loggers")
-	public List<String> getLoggers(Boolean all) {
+	public String getLoggers(String all, String testLog) {
+		if (trueIfNotNull(testLog))
+						testLog();
 		return getAllLoggers(
-				firstNonNull(all, false));
+						trueIfNotNull(all));
 	}
 
-	@PutMapping("/logger/{loggerName}/level/{level}")
-	public List<String> updateLoggerLevel(@PathVariable String loggerName, @PathVariable String level) {
+	@PutMapping("/loggers/{loggerName}/level/{level}")
+	public String updateLoggerLevel(@PathVariable String loggerName, @PathVariable String level) {
 		getLoggerByName(loggerName)
 				.setLevel(Level.valueOf(level));
 		return getAllLoggers(false);
 	}
 
-	@DeleteMapping("/logger/{loggerName}")
-	public List<String> deleteLogger(@PathVariable String loggerName) {
+	@DeleteMapping("/loggers/{loggerName}/level")
+	public String deleteLogger(@PathVariable String loggerName) {
 		getLoggerByName(loggerName)
 				.setLevel(null);
 		return getAllLoggers(false);
@@ -40,19 +41,28 @@ public class LoggerLevelController {
 		return (Logger) LoggerFactory.getLogger(loggerName);
 	}
 
-	private List<String> getAllLoggers(boolean all) {
+	private String getAllLoggers(boolean all) {
 		val ctx = (LoggerContext) LoggerFactory.getILoggerFactory();
 		return ctx.getLoggerList().stream()
-				.filter(it -> all || it.getLevel() != null)
-				.map(this::loggerToString)
-				.collect(toList());
+								.filter(it -> all || it.getLevel() != null)
+								.map(this::loggerToString)
+								.collect(joining(lineSeparator()));
 	}
 
 	private String loggerToString(ch.qos.logback.classic.Logger logger) {
 		return logger.getName() + " " + logger.getLevel() + "   " + logger.getEffectiveLevel();
 	}
 
-	private <T> T firstNonNull(T first, T second) {
-		return first != null ? first : second;
+	private void testLog() {
+		String s = "+++ TEST_LOG {} +++";
+		log.error(s, "ERROR");
+		log.warn(s, "WARN");
+		log.info(s, "INFO");
+		log.debug(s, "DEBUG");
+		log.trace(s, "TRACE");
+	}
+
+	private boolean trueIfNotNull(Object o) {
+		return o != null;
 	}
 }
