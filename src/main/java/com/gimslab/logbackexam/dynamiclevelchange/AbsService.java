@@ -1,4 +1,4 @@
-package com.gimslab.log4jexam.log4jexam;
+package com.gimslab.logbackexam.dynamiclevelchange;
 
 import org.slf4j.Logger;
 import org.springframework.scheduling.annotation.EnableScheduling;

@@ -1,10 +1,10 @@
-package com.gimslab.log4jexam.log4jexam;
+package com.gimslab.logbackexam.dynamiclevelchange;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class Log4jexamApplicationTests {
+class LogbackDynamicLevelChangeApplicationTests {
 
 	@Test
 	void contextLoads() {

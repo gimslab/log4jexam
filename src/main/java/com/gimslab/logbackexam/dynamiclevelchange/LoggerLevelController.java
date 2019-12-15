@@ -1,4 +1,4 @@
-package com.gimslab.log4jexam.log4jexam;
+package com.gimslab.logbackexam.dynamiclevelchange;
 
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;

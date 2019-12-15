@@ -1,6 +1,6 @@
-package com.gimslab.log4jexam.log4jexam.pkga;
+package com.gimslab.logbackexam.dynamiclevelchange.pkgb;
 
-import com.gimslab.log4jexam.log4jexam.AbsService;
+import com.gimslab.logbackexam.dynamiclevelchange.AbsService;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Slf4j
-public class ServiceA extends AbsService {
+public class ServiceB extends AbsService {
 
 	@Override
 	protected Logger logger() {

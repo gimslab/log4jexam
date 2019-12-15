@@ -1,4 +1,4 @@
-# log4jexam: dynamic level change at runtime
+# dynamic log level change at runtime
 
 ```bash
 $ http -b :8080/loggers
