@@ -11,12 +11,12 @@ import org.springframework.stereotype.Component;
 public class ServiceB extends AbsService {
 
 	@Override
-	protected Logger loger() {
+	protected Logger logger() {
 		return log;
 	}
 
 	@Scheduled(fixedDelay = 3000)
-	public void testlog(){
+	public void testLog(){
 		super.testLog();
 	}
 }
