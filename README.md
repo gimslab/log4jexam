@@ -21,9 +21,9 @@ $ http -b :8080/loggers?testLog
 ```
 
 ```bash
-$ http -b PUT :8080/loggers/com.gimslab.log4jexam.log4jexam.pkga/level/DEBUG
+$ http -b PUT :8080/loggers/com.gimslab.logbackexam.dynamiclevelchange.pkga/level/ERROR
 ROOT INFO   INFO
-com.gimslab.log4jexam.log4jexam.pkga DEBUG   DEBUG
+com.gimslab.logbackexam.dynamiclevelchange.pkga ERROR   ERROR
 ...
 ```
 
@@ -36,7 +36,7 @@ com.gimslab.log4jexam.log4jexam.pkga DEBUG   DEBUG
 
 
 ```bash
-http -b DELETE :8080/loggers/com.gimslab.log4jexam.log4jexam.pkga/level
+http -b DELETE :8080/loggers/com.gimslab.logbackexam.dynamiclevelchange.pkga/level
 ROOT OFF   OFF
 ```
 
